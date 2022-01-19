@@ -1,25 +1,9 @@
 const path = require('path');
 const express = require('express');
+const { makeAssetsMap } = require('./backend/utils.js');
 
-function makeAssetsMap() {
-  const map = { js: [] };
-
-  if (process.env.NODE_ENV !== 'production') {
-    return map;
-  }
-
-  const manifest = require('./dist/manifest.json');
-
-  for (key of Object.keys(manifest)) {
-    if (key.indexOf('_') === 0) continue;
-    map.js.push(manifest[key].file);
-  }
-
-  return map;
-}
-
-const assetsMap = makeAssetsMap();
 const app = express();
+const assetsMap = makeAssetsMap();
 
 // Static files
 app.use(express.static('dist'));
