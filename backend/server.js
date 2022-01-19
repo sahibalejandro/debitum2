@@ -1,16 +1,15 @@
-const path = require('path');
 const express = require('express');
-const { makeAssetsMap } = require('./backend/utils.js');
+const { makeAssetsMap } = require('./utils.js');
 
 const app = express();
 const assetsMap = makeAssetsMap();
 
 // Static files
-app.use(express.static('dist'));
-app.use(express.static('public'));
+app.use(express.static('./dist'));
+app.use(express.static('./public'));
 
 // Views engine
-app.set('views', path.resolve(__dirname));
+app.set('views', './');
 app.engine('html', require('ejs').__express);
 
 // Routes

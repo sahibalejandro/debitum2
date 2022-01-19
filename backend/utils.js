@@ -5,7 +5,7 @@ function makeAssetsMap() {
     return map;
   }
 
-  const manifest = require('./dist/manifest.json');
+  const manifest = require('../dist/manifest.json');
 
   for (key of Object.keys(manifest)) {
     if (key.indexOf('_') === 0) continue;
