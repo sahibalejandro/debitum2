@@ -4,13 +4,17 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "dev-server": "PORT=3001 nodemon server.js"
   },
   "dependencies": {
+    "ejs": "^3.1.6",
+    "express": "^4.17.2",
     "vue": "^3.2.25"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^2.0.0",
+    "nodemon": "^2.0.15",
     "vite": "^2.7.2"
   }
 }
