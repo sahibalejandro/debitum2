@@ -1,5 +1,6 @@
 const express = require('express');
 const { makeAssetsMap } = require('./utils.js');
+const api = require('./api.js');
 
 const app = express();
 const assetsMap = makeAssetsMap();
@@ -13,6 +14,8 @@ app.set('views', './');
 app.engine('html', require('ejs').__express);
 
 // Routes
+app.use('/api', api);
+
 app.get('*', (_req, res) => {
   res.render('index.html', { assets: assetsMap });
 });

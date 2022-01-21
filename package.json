@@ -10,7 +10,8 @@
   "dependencies": {
     "ejs": "^3.1.6",
     "express": "^4.17.2",
-    "vue": "^3.2.25"
+    "vue": "^3.2.25",
+    "vue-query": "^1.18.0"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^2.0.0",

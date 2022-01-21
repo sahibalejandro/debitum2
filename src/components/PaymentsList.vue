@@ -1,11 +1,11 @@
 <template>
   <div>
-    Total payments: {{payments.length}}
+    Total payments:
   </div>
 </template>
 
 <script>
 export default {
-  props: ['payments'],
+  props: ['paymentsQuery'],
 };
 </script>

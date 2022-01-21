@@ -1,26 +1,11 @@
-<script>
+<script setup>
+import { useQueryProvider } from 'vue-query';
 import NavBar from './components/NavBar.vue';
 import QuickView from './components/QuickView.vue';
-import PaymentsList from './components/PaymentsList.vue';
-
-export default {
-  components: {NavBar, QuickView, PaymentsList},
-
-  data() {
-    return { payments: [] };
-  },
-
-  created() {
-    // load payments from API
-  },
-};
+useQueryProvider();
 </script>
 
 <template>
   <NavBar />
-  <QuickView :payments="payments" />
-  <PaymentsList :payments="payments" />
+  <QuickView />
 </template>
-
-<style>
-</style>
