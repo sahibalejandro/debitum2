@@ -1,7 +1,7 @@
 <template>
-  <div v-if="paymentsQuery.isSuccess">
-    <div v-for="payment in paymentsQuery.data.payments" :key="payment._id">
-      <Currency :number="payment.amount" />
+  <div v-if="isSuccess">
+    <div v-for="payment in data.payments" :key="payment._id">
+      {{payment.title}} - <Currency :number="payment.amount" />
       <button type="button" @click="editPayment(payment)">Edit</button>
     </div>
   </div>
@@ -17,7 +17,7 @@ import { useQuery } from 'vue-query';
 import Currency from './Currency.vue';
 import { fetchPayments } from '../queries/payments.js';
 
-const paymentsQuery = reactive(useQuery('payments', fetchPayments));
+const { isSuccess, data } = useQuery('payments', fetchPayments);
 
 function editPayment(payment) {
   store.setPayment(payment);

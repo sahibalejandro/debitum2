@@ -8,7 +8,8 @@ const { makeAssetsMap } = require('./utils.js');
 const app = express();
 const assetsMap = makeAssetsMap();
 
-// Static files
+// Middlewares
+app.use(express.json());
 app.use(express.static('./dist'));
 app.use(express.static('./public'));
 

@@ -9,6 +9,7 @@
     "dev:backend": "nodemon backend/server.js"
   },
   "dependencies": {
+    "axios": "^0.25.0",
     "console-stamp": "^3.0.3",
     "ejs": "^3.1.6",
     "express": "^4.17.2",

@@ -9,7 +9,6 @@ const store = {
   }),
 
   setPayment(payment) {
-    console.log('Set payment', payment);
     this.state.payment = payment;
   },
 

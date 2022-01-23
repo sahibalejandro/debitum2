@@ -4,7 +4,10 @@
       <div class="modal-window">
         <div class="modal-header">
           {{modalTitle}}
-          <button type="button" class="close-button" @click="store.togglePaymentModal">&times;</button>
+          <button type="button" class="close-button"
+            @click="store.togglePaymentModal"
+            :disabled="isLoading"
+          >&times;</button>
         </div>
         <div class="modal-content">
           <div>
@@ -17,7 +20,10 @@
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" @click="save">Save</button>
+          <button type="button" @click="save" :disabled="isLoading">Save</button>
+        </div>
+        <div v-if="error !== null">
+          {{error}}
         </div>
       </div>
     </div>
@@ -26,7 +32,10 @@
 
 <script setup>
 import store from '../store';
-import { computed } from 'vue';
+import { reactive, ref } from 'vue';
+import { useMutation } from 'vue-query';
+import { savePayment } from '../queries/payments.js';
+import { toCents, toInteger } from '../utils/currency.js';
 
 let payment = {
   amount: 0,
@@ -34,14 +43,26 @@ let payment = {
 };
 
 if (store.state.payment !== null) {
-  payment = {...store.state.payment};
+  payment = {...store.state.payment, amount: toCents(store.state.payment.amount)};
 }
 
+const error = ref(null);
 const modalTitle = payment._id ? 'Edit' : 'Add';
 
+const { isLoading, mutate } = useMutation(savePayment, {
+  onMutate() {
+    error.value = null;
+  },
+  onSuccess() {
+    store.togglePaymentModal();
+  },
+  onError(err) {
+    error.value = err.response?.data?.message || err.message;
+  }
+});
+
 function save() {
-  console.log('Save payment', payment);
-  store.togglePaymentModal();
+  mutate({...payment, amount: toInteger(payment.amount)});
 }
 </script>
 
