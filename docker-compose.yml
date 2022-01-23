@@ -1,0 +1,52 @@
+services:
+  nginx:
+    image: nginx:stable
+    depends_on:
+      - backend
+    volumes:
+      - ./nginx.dev.conf:/etc/nginx/conf.d/default.conf
+    ports:
+      - 4001:80
+    networks:
+      - debitum2_network
+  vite:
+    build:
+      context: .
+      args:
+        NODE_ENV: development
+    volumes:
+      - .:/var/www
+      - debitum2_node_modules:/var/www/node_modules
+    ports:
+      - 3000:3000
+    command: yarn dev:vite
+  backend:
+    depends_on:
+      - vite
+    build:
+      context: .
+      args:
+        NODE_ENV: development
+    volumes:
+      - .:/var/www
+      - debitum2_node_modules:/var/www/node_modules
+    networks:
+      - debitum2_network
+    environment:
+      NODE_ENV: development
+    command: yarn dev:backend
+  mongo:
+    image: mongo:4.0-xenial
+    ports:
+      - 27017:27017
+    networks:
+      - debitum2_network
+    volumes:
+      - debitum2_mongo_db:/data/db
+      - debitum2_mongo_configdb:/data/configdb
+volumes:
+  debitum2_mongo_db:
+  debitum2_node_modules:
+  debitum2_mongo_configdb:
+networks:
+  debitum2_network:

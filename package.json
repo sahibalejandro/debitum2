@@ -2,14 +2,17 @@
   "name": "debitum2",
   "version": "0.0.0",
   "scripts": {
-    "dev": "vite",
+    "dev:vite": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "dev-server": "PORT=3001 nodemon backend/server.js"
+    "start": "node backend/server.js",
+    "dev:backend": "nodemon backend/server.js"
   },
   "dependencies": {
+    "console-stamp": "^3.0.3",
     "ejs": "^3.1.6",
     "express": "^4.17.2",
+    "mongoose": "^6.1.7",
     "vue": "^3.2.25",
     "vue-query": "^1.18.0"
   },

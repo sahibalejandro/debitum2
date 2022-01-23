@@ -3,7 +3,7 @@
 </template>
 
 <script setup>
-import { defineProps, computed } from 'vue';
+import { computed } from 'vue';
 const props = defineProps({ number: Number });
 const number = computed(() => (props.number / 100).toFixed(2).toString().split('.'));
 </script>
