@@ -11,16 +11,15 @@
 </template>
 
 <script setup>
-import store from '../store';
-import { reactive } from 'vue';
-import { useQuery } from 'vue-query';
-import Currency from './Currency.vue';
-import { fetchPayments } from '../queries/payments.js';
+import { toRefs } from 'vue';
 
-const { isSuccess, data } = useQuery('payments', fetchPayments);
+import store from '../store';
+import Currency from './Currency.vue';
+
+const { isSuccess, data } = toRefs(store.state.paymentsQuery);
 
 function editPayment(payment) {
-  store.setPayment(payment);
+  store.setPaymentToEdit({...payment});
   store.togglePaymentModal();
 }
 </script>

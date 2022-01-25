@@ -1,17 +1,15 @@
 <template>
-  <div v-if="quickViewQuery.isSuccess === true">
-    Month total: <Currency :number="quickViewQuery.data.monthTotal" />
-  </div>
-  <div v-else>
-    Skeleton
+  <div v-if="isSuccess">
+    Month total: <Currency :number="monthTotal" />
   </div>
 </template>
 
 <script setup>
-import { reactive } from 'vue';
-import { useQuery } from 'vue-query';
-import { fetchQuickView } from '../queries/payments.js';
+import { computed, toRefs } from 'vue';
+
+import store from '../store';
 import Currency from './Currency.vue';
 
-const quickViewQuery = reactive(useQuery('quick-view', fetchQuickView));
+const { isSuccess, data } = toRefs(store.state.paymentsQuery);
+const monthTotal = computed(() => data.value?.payments.reduce( (sum, p) => sum + p.amount, 0));
 </script>

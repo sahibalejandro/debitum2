@@ -8,7 +8,7 @@
 import store from '../store';
 
 function openNewPaymentModal() {
-  store.setPayment(null);
+  store.unsetPaymentToEdit();
   store.togglePaymentModal();
 }
 </script>

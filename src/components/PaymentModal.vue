@@ -1,5 +1,5 @@
 <template>
-  <teleport to="body">
+  <teleport to="body" v-if="paymentModalOpen">
     <div class="modal">
       <div class="modal-window">
         <div class="modal-header">
@@ -16,7 +16,7 @@
           </div>
           <div>
             <label for="amount">Amount:</label>
-            $ <input type="number" v-model="payment.amount">
+            $ <input type="number" v-model="amount">
           </div>
         </div>
         <div class="modal-footer">
@@ -32,22 +32,34 @@
 
 <script setup>
 import store from '../store';
-import { reactive, ref } from 'vue';
+import { ref, toRefs, toRef, computed } from 'vue';
 import { useMutation } from 'vue-query';
 import { savePayment } from '../queries/payments.js';
 import { toCents, toInteger } from '../utils/currency.js';
 
-let payment = {
-  amount: 0,
-  title: 'My new payment',
-};
-
-if (store.state.payment !== null) {
-  payment = {...store.state.payment, amount: toCents(store.state.payment.amount)};
-}
-
 const error = ref(null);
-const modalTitle = payment._id ? 'Edit' : 'Add';
+const payment = toRef(store.state, 'payment');
+const { paymentModalOpen } = toRefs(store.state);
+
+const modalTitle = computed(() => {
+  return payment.value._id === undefined ? 'Add' : 'Edit'
+});
+
+const amount = computed({
+  get: () => {
+    if (payment.value.amount === undefined) return '';
+    return toCents(payment.value.amount);
+  },
+  set: (cents) => {
+    if (cents === '') {
+      payment.value.amount = undefined;
+    } else {
+      payment.value.amount = toInteger(parseFloat(cents));
+    }
+
+    return payment.value.amount;
+  }
+});
 
 const { isLoading, mutate } = useMutation(savePayment, {
   onMutate() {
@@ -62,7 +74,7 @@ const { isLoading, mutate } = useMutation(savePayment, {
 });
 
 function save() {
-  mutate({...payment, amount: toInteger(payment.amount)});
+  mutate({...payment.value, amount: payment.value.amount || 0});
 }
 </script>
 

@@ -1,15 +1,27 @@
 import { reactive } from 'vue';
 
+const defaultPaymentData = {
+  title: 'New payment',
+  amount: 100,
+};
+
 const store = {
   state: reactive({
-    payment: {
-      amount: 0,
-    },
+    payment: {...defaultPaymentData},
     paymentModalOpen: false,
+    paymentsQuery: {},
   }),
 
-  setPayment(payment) {
+  setPaymentsQuery(paymentsQuery) {
+    this.state.paymentsQuery = paymentsQuery;
+  },
+
+  setPaymentToEdit(payment) {
     this.state.payment = payment;
+  },
+
+  unsetPaymentToEdit() {
+    this.state.payment = {...defaultPaymentData};
   },
 
   togglePaymentModal() {

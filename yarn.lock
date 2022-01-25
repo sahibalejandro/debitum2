@@ -1408,10 +1408,10 @@ rc@^1.2.8:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
-react-query@^3.34.5:
-  version "3.34.8"
-  resolved "https://registry.yarnpkg.com/react-query/-/react-query-3.34.8.tgz#a3be8523fd95f766b04c32847a1b58d8231db03c"
-  integrity sha512-pl9e2VmVbgKf29Qn/WpmFVtB2g17JPqLLyOQg3GfSs/S2WABvip5xlT464vfXtilLPcJVg9bEHHlqmC38/nvDw==
+react-query@^3.34.9:
+  version "3.34.12"
+  resolved "https://registry.yarnpkg.com/react-query/-/react-query-3.34.12.tgz#dcaaf7b629f0868aae8afef9fb7692f6ea7643bf"
+  integrity sha512-flDdudQVH4CqE+kNYYYyo4g2Yjek3H/36G3b9bK5oe26jD5gFnx+PPwnq0gayq5z2dcSfr2z4+drvuyeZ3A5QQ==
   dependencies:
     "@babel/runtime" "^7.5.5"
     broadcast-channel "^3.4.1"
@@ -1765,19 +1765,19 @@ vite@^2.7.2:
   optionalDependencies:
     fsevents "~2.3.2"
 
-vue-demi@^0.10.1:
+vue-demi@0.10.1:
   version "0.10.1"
   resolved "https://registry.yarnpkg.com/vue-demi/-/vue-demi-0.10.1.tgz#229b81395510f02f4ee255344557a12cc0120930"
   integrity sha512-L6Oi+BvmMv6YXvqv5rJNCFHEKSVu7llpWWJczqmAQYOdmPPw5PNYoz1KKS//Fxhi+4QP64dsPjtmvnYGo1jemA==
 
 vue-query@^1.18.0:
-  version "1.18.0"
-  resolved "https://registry.yarnpkg.com/vue-query/-/vue-query-1.18.0.tgz#3cbcf37c97e1120d153670adfe13d2b11ca04937"
-  integrity sha512-h84R5zVx6ADssWzlzwVTjRpDjgzqXEg/g+DZXp+ztXb0je4f1uOESC95x6VcGxPhNMddyRZMZXcgt4l9+p4Njg==
+  version "1.19.0"
+  resolved "https://registry.yarnpkg.com/vue-query/-/vue-query-1.19.0.tgz#00209481fd8c278667857f3bc7941f03c2367f0d"
+  integrity sha512-mAtZFi3wWg9XrSvZsj6TU+9a3UchJsUCmwlUvq7k9siy4oOo10l0/d+pI1Vd3oXb56HsV5wrhACfgQx7QA3auw==
   dependencies:
     match-sorter "^6.3.1"
-    react-query "^3.34.5"
-    vue-demi "^0.10.1"
+    react-query "^3.34.9"
+    vue-demi "0.10.1"
 
 vue@^3.2.25:
   version "3.2.27"
